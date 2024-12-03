@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     const videos = [];
 
     try {
-        // Simultaneous requests for both subbed and dubbed versions
+       
         const responses = await Promise.allSettled([
             axios.get(`https://yugenanime.sx/watch/${animeId}/${animeSlug}/${episode}`, {
                 headers: {
@@ -36,13 +36,11 @@ router.get('/', async (req, res) => {
             }),
         ]);
 
-        // Process the responses
+        
         responses
             .filter((result) => result.status === 'fulfilled')
             .forEach((result) => {
                 const $ = cheerio.load(result.value.data);
-
-                // Extract anime title, description, and video URLs
                 if (
                     Object.keys(result.value.config.headers).includes('Requested-Language') &&
                     result.value.config.headers['Requested-Language'] === 'Subbed'
@@ -65,7 +63,7 @@ router.get('/', async (req, res) => {
                         $('#wrapper > div > div.col.col-w-65 > div:nth-child(4) > div:nth-child(1) > p').text();
                 }
 
-                // Push video information to the videos array
+              
                 videos.push({
                     language:
                         Object.keys(result.value.config.headers).includes('Requested-Language') &&
@@ -76,7 +74,7 @@ router.get('/', async (req, res) => {
                 });
             });
 
-        // Check if no videos were found
+     
         if (videos.length === 0) {
             return res.status(404).json({
                 error: 'No videos found for the specified anime, slug, and episode combination.',
@@ -85,7 +83,7 @@ router.get('/', async (req, res) => {
 
         sendPostRequest()
 
-        // Return the extracted data as JSON
+     
         res.json({
             anime: {
                 title: animeTitle,
@@ -99,7 +97,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         console.error('Error occurred while fetching anime data:', error.message);
 
-        // Return the error details
+     
         res.status(500).json({
             error: 'Failed to fetch data. Please try again later.',
             details: error.response?.statusText || error.message,
