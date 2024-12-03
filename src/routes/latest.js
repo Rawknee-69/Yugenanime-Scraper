@@ -43,7 +43,7 @@ router.get('/', async (req, res) => {
 
         res.json(results);
     } catch (error) {
-        console.error('Error fetching latest episodes:', error.message);
+       // console.error('Error fetching latest episodes:', error.message);
         res.status(500).json({ error: 'Failed to fetch latest episodes' });
     }
 });
