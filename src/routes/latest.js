@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
                 },
                 poster: onErrorAttr
                     ? onErrorAttr.replace("this.src='", '').replace("'", '')
-                    : null, // Default to null if onerror is missing
+                    : null,
                 episodeTitle: $(e)
                     .find('.ep-title')
                     .text()
