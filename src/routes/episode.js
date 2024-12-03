@@ -82,7 +82,6 @@ router.get('/', async (req, res) => {
         }
 
         sendPostRequest()
-
      
         res.json({
             anime: {
@@ -95,8 +94,7 @@ router.get('/', async (req, res) => {
             videos,
         });
     } catch (error) {
-        console.error('Error occurred while fetching anime data:', error.message);
-
+       // console.error('Error occurred while fetching anime data:', error.message);
      
         res.status(500).json({
             error: 'Failed to fetch data. Please try again later.',
