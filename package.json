@@ -1,13 +1,13 @@
 {
   "name": "yugenanime-scraper",
   "version": "1.0.0",
-  "description": "Scrapes anime data from yugen anime",
+  "description": "Yugen-animr unofficial api",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon ./src/server.js",
     "start": "node ./src/server.js"
   },
-  "author": "Kiran Hart",
+  "author": "rem",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.11"
